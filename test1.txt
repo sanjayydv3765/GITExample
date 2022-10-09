@@ -1,0 +1,16 @@
+clss A
+{
+Sysout("Print A")
+}
+
+Class B extends Class A
+{
+Sysout("Print Class B);
+}
+
+Class C implements Class B
+{
+Sysout("Multiple Inheritance");
+}
+
+input aabbbcdddda, output a2b3c1d4a1

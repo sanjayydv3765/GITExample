@@ -1,0 +1,44 @@
+package test;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WebTableExample {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.w3schools.com/html/html_tables.asp");
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
+		List<WebElement> Rows = driver.findElements(By.xpath("//table[@id='customers']/tbody/tr"));
+		System.out.println("Total no. of rows are" + Rows.size());
+		List<WebElement> Columns = driver.findElements(By.xpath("//table[@id='customers']/tbody/tr[1]/th"));
+		System.out.println("Total no. of columns are " + Columns.size());
+
+		WebElement data = driver.findElement(By.xpath("//table[@id='customers']//tr[4]/td[1]"));
+		System.out.println("data is " + data.getText());
+//		for (WebElement row : Rows) {
+//			List<WebElement> Allcell = row.findElements(By.tagName("td"));
+//			System.out.println("Print td " + Allcell);
+//			for (WebElement cell : Allcell) {
+//				System.out.println(cell.getText() + " \t ");
+//			}
+//			System.out.println();
+//
+//		}
+		for(int row=1; row<=Rows.size(); row++)
+		{
+			for(int col=1;col<=Columns.size(); col++) {
+				WebElement cell=driver.findElement(By.xpath("\"//table[@id='customers']//tr["+row+"]/*["+col+"]"));
+				System.out.println(cell.getText());
+			}
+		}
+	}
+
+}
